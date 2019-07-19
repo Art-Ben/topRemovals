@@ -1,0 +1,195 @@
+.primaryQuote {
+    width: 100%;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    .container {
+        margin: 0 auto;
+    }
+    .topHeaders {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 60px;
+        &_top,
+        &_bottom {
+            width: 100%;
+            display: inline-block;
+        }
+        &_top {
+            @include font-Cav(30px, transparentize($color_main, .5), 400, 110%);
+            margin-bottom: 10px;
+            @include mq('phablet', max) {
+                max-width: 225px;
+                line-height: 38px;
+            }
+        }
+        @include mq('phablet', max) {
+            margin-bottom: 30px;
+            @include justify-content(center);
+        }
+    }
+    &--content {
+        width: 100%;
+        margin-bottom: 90px;
+        .basicContent {
+            margin-bottom: 10px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+    &__order {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(center);
+        &--items {
+            width: 100%;
+            max-width: 815px;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(space-between);
+            margin-bottom: 50px;
+            overflow: hidden;
+            .link {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(center);
+                width: 33.3333333333%;
+                text-decoration: none;
+                .img {
+                    height: 165px; 
+                    width: auto;
+                    margin-bottom: 20px;
+                }
+                .text {
+                    @include transition(color $basic_transition);
+                }
+                &:hover {
+                    .text {
+                        color: $color_shad;
+                    }
+                }
+                @include mq('phablet', max) {
+                    width: 100%;
+                }
+            }
+            &.is-slider {
+                display: block;
+                outline:none;
+                position: relative;
+                .flickity-button {
+                    outline: none;
+                    border: none;
+                    background: transparent;
+                    position: absolute;
+                    top: calc(50% - 8px);
+                    width: 8px;
+                    height: 16px;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    cursor: url(../images/icons/Pointer.svg), pointer;
+                    &.previous {
+                        background-image: url('../images/icons/arrowLeftGreen.svg');
+                        left: 0;
+                    }
+                    &.next {
+                        background-image: url('../images/icons/arrowRightGreen.svg');
+                        right: 0;
+                    }
+                    
+                    &:disabled {
+                        display: none;
+                    }
+                    
+                    @include mq('phablet', max) {
+                        width: 24px;
+                        height: 48px;
+                        box-shadow: 0 0 10px rgba(42,41,46,.1);
+                        background-size: 16px 32px;
+                    }
+                    .flickity-button-icon {
+                        display: none;
+                    }
+                }
+            }
+            
+            &:after {
+                content: 'flickity';
+                display: none;
+            }
+            
+            @include mq('phablet', min) {
+                &:after {
+                    content: '';
+                }
+            }
+        }
+        &--process {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(center);
+            width: 100%;
+            .headLine, .bodyLine, .footerLine{
+                width: 100%;
+                max-width: 815px;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+            }
+            .headLine {
+                .carMarker {
+                    width: 110px;
+                    height: auto;
+                }
+            }
+            .bodyLine {
+                width: 100%;
+                height: 2px;
+                margin-bottom: 10px;
+                background: transparentize($color_main, .5);
+            }
+            .footerLine {
+                width: 100%;
+                @include justify-content(space-between);
+                .text {
+                    &:first-child, &.selected{
+                        color: $color_shad;
+                    }
+                }
+            }
+        }
+    }
+    
+    .rightObject {
+        position: absolute;
+        right: 0;
+        z-index: 10;
+        @include mq('desktop-wide',max) {
+            right: -50px;
+            max-width: 400px;
+        }
+        @include mq('desktop',max) {
+            display: none;
+        }
+    }
+    
+    @include mq('tablet-wide',max) {
+        padding-top: 50px;
+    }
+    
+    @include mq('phablet',max) {
+        padding-bottom: 35px;
+        padding-top: 25px;
+    }
+    
+}

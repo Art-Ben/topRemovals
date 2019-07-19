@@ -1,0 +1,205 @@
+.primaryTestimonials {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: $color_green--gradient;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: .3;
+    }
+
+    .topHeaders {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 60px;
+
+        &_top,
+        &_bottom {
+            width: 100%;
+            display: inline-block;
+        }
+
+        &_top {
+            @include font-Cav(30px, transparentize($color_main, .5), 400, 110%);
+            margin-bottom: 10px;
+        }
+
+        @include mq('phablet', max) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__items {
+        width: 100%;
+        outline: none;
+        position: relative;
+        .item {
+            margin-right: 115px;
+            width: 100%;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include justify-content(flex-start);
+            .logoLine,
+            .raringLine,
+            .bottomLine {
+                width: 100%;
+            }
+
+            .logoLine {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include justify-content(flex-start);
+                margin-bottom: 20px;
+                text-decoration: none;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                    margin-right: 15px;
+                }
+
+                .tit {
+                    @include font-Mon(30px, $color_main, 700, 110%);
+                    @include mq('phablet',max){
+                        max-width: calc(100% - 95px);
+                    }
+                }
+            }
+
+            .ratingLine {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include justify-content(flex-start);
+                margin-bottom: 10px;
+                position: relative;
+                width: 100px;
+                height: 20px;
+                background: url('../images/starsLine1.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: left center;
+                .star {
+                    width: 20px;
+                    height: 20px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                    margin-right: 10px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+                
+                .ratingShirm {
+                    position: absolute;
+                    background: $color_green--gradient;
+                    opacity: .3;
+                    height: 100%;
+                    right: 0;
+                    top: 0;
+                    width: 100%;
+                }
+            }
+
+            .bottomLine {
+                @include font-Mon(16px, $color_main, 300, 100%);
+
+                .sum {
+                    @include font-Mon(20px, $color_main, 500, 110%);
+                }
+            }
+
+            &.fb, &.Facebook {
+                max-width: 255px;
+            }
+
+            &.gogl, &.Google{
+                max-width: 220px;
+            }
+
+            &.oneflare, &.Oneflare{
+                max-width: 235px;
+            }
+
+            &.wom, &.Word of Mouth{
+                max-width: 340px;
+            }
+
+            @include mq('tablet', max) {
+                & {
+                    margin-right: 85px;
+                }
+            }
+
+            @include mq('phablet', max) {
+                margin-right: 0;
+                width: 100%;
+                max-width: 100%;
+                padding: 0 30px;
+                &.fb, &.Facebook,
+                &.gogl,&.Google,
+                &.oneflare,&.Oneflare,
+                &.wom,&.Word of Mouth {
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+            }
+        }
+
+        @include mq('tablet-wide', max) {
+            & {
+                overflow: hidden;
+            }
+        }
+
+        .flickity-button {
+            display: none;
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            top: calc(50% - 8px);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            &.previous {
+                left: 0;
+                background-image: url('../images/icons/arrowLeft.svg');
+            }
+            &.next {
+                right: 0;
+                background-image: url('../images/icons/arrowRight.svg');
+            }
+            @include mq('phablet', max) {
+                display: block;
+            }
+            
+            &:disabled {
+                display: none;
+            }
+        }
+    }
+
+    @include mq('phablet', max) {
+        padding: 90px 0;
+    }
+}

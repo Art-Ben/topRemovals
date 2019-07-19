@@ -1,0 +1,29 @@
+/*- basic and custom animation -*/
+
+@include keyframes(menuAnimBasic) {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -100%;
+    }
+}
+
+@include keyframes(menuAnimHovered) {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@include keyframes(toggleMenu) {
+    0% {
+        height: 0;
+    }
+    100%{
+        height: auto;
+    }
+}
+

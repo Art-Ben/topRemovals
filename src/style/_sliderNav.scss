@@ -1,0 +1,99 @@
+.sliderNav {
+    width: 100%;
+    display: none;
+    margin-bottom: 20px;
+    .arrow {
+        display: inline-block;
+        width: 6px;
+        height: 10px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        @include transition(all $basic_transition);
+
+        &.prev {
+            margin-right: 15px;
+            background-image: url('../images/icons/arrowLeft_small.svg');
+        }
+
+        &.next {
+            margin-left: 15px;
+            background-image: url('../images/icons/arrowRight_small.svg');
+        }
+
+        &:hover,
+        &:active {
+            transform: scale(1.25);
+        }
+    }
+
+    .circle {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        position: relative;
+        border: 1px solid $color_main;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include align-content(center);
+        @include justify-content(center);
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border: 2px solid $color_main;
+            border-radius: 50%;
+        }
+    }
+
+    &.mrgBt50 {
+        margin-bottom: 50px;
+        @include mq('phablet', max) {
+            margin-bottom: 20px;
+        }
+    }
+    
+    &--cont {
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include align-content(center);
+        @include justify-content(center);
+        @include mq('phablet', max) {
+            display: none;
+        }
+    }
+    
+    .text {
+        display: none;
+        color: transparentize($color_main, .5);
+        @include mq('phablet', max) {
+            display: block;
+        }
+    }
+    
+    @include mq('tablet-wide', max) {
+        &.showTablet {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include align-content(center);
+            @include justify-content(center);
+        }
+    }
+    
+    @include mq('phablet', max) {
+        &.showMobile {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include align-content(center);
+            @include justify-content(center);
+        }
+    }
+    
+    
+}

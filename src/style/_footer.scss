@@ -1,0 +1,346 @@
+.footer {
+    width: 100%;
+    background-color: $color_main;
+    position: relative;
+    z-index: 2;
+    &_top {
+        &.hide {
+            display:none;
+        }
+        width: 100%;
+        background-image: url('../images/footerBg.png');
+        background-position: right top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding: 75px 0 65px 0;
+        
+        @include mq('phablet',max) {
+            background-image: url('../images/imageFooter.png');
+            background-position: center center;
+            background-size: cover;
+        }
+    }
+
+    &_bottom {
+        width: 100%;
+        border-top: 1px solid transparentize($color_white, .8);
+        padding: 20px 0;
+        @include font-Mon(12px, $color_white, 400, 20px);
+        &.hide {
+            display:none;
+        }
+    }
+
+    .footerMade {
+        a {
+            display: inline-block;
+            font-weight: 700;
+            color: $color_white;
+            text-decoration: none;
+        }
+        text-align: right;
+        padding-left: 15px;
+    }
+    
+    .footerMade, .footerCopyright {
+        width: 50%;
+    }
+    
+    .footerCopyright {
+        padding-right: 15px;
+    }
+
+    &__column {
+        width: 100%;
+        max-width: 390px;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+
+        &--title {
+            width: 100%;
+            @include font-Mon(25px, $color_white, 700, 34px);
+            margin-bottom: 35px;
+        }
+        
+        @include mq('desktop-wide',max) {
+            width: 33.33333333333%;
+            max-width: 325px;
+            padding-right: 30px;
+            
+        }
+        
+        @include mq('desktop', max) {
+            & {
+                max-width: 265px;
+                width: 100%;
+                padding-right: 0;
+            }
+        }
+        
+        @include mq('tablet-wide',max) {
+            width: 100%;
+            padding-right: 0;
+            max-width: 190px;
+            &.tabletHide {
+                display: none;
+            }
+            &.tabletWidth {
+                width: 100%;
+                max-width: 265px;
+            }
+        }
+        
+        @include mq('phablet', max) {
+            max-width: 100%;
+            margin-bottom: 40px;
+            &.tabletWidth {
+                max-width: 100%;
+            }
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+    }
+
+    &_contactForm {
+        width: 100%;
+    }
+
+    &_contactList {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include justify-content(flex-start);
+
+        .headGroup,
+        .bottomGroup {
+            width: 100%;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+        }
+
+        .headGroup {
+            margin-bottom: 90px;
+            @include mq('phablet', max) {
+                & {
+                    margin-bottom: 25px;
+                }
+            }
+        }
+        
+        .bottomGroup {
+            @includ mq('tablet', max) {
+                & {
+                    margin-bottom: 70px;
+                }
+            }
+        }
+
+        .item {
+            width: 100%;
+            margin-bottom: 25px;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include justify-content(flex-start);
+            @include font-Mon(16px, $color_white, 400, 24px);
+            text-decoration: none;
+            @include transition(opacity $basic_transition);
+
+            img {
+                width: 100%;
+                max-width: 25px;
+                margin-right: 25px;
+            }
+            
+            span {
+                width: 100%;
+                max-width: calc(100% - 50px);
+            }
+
+            &:hover,
+            &:active {
+                opacity: .5;
+            }
+
+            &.nonHover {
+
+                &:hover,
+                &:active {
+                    opacity: 1;
+                }
+            }
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        
+        .mapCont, #mapCont {
+            margin-top: 20px;
+            width: 100%;
+            min-height: 295px;
+            @include mq('tablet', max) {
+                min-height: 170px;
+            }
+            @include mq('phablet', max) {
+                & {
+                    min-height: 180px;
+                    margin-bottom: 40px;
+                }
+            }
+            border-radius: 5px;
+        }
+    }
+
+    &_nav {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+
+        .footerMenu {
+            width: 100%;
+            margin-bottom: 90px;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+
+            &--list {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include flex-direction(column);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+                width: 100%;
+
+                .list-item, .menu-item {
+                    width: 100%;
+                    &.current-menu-item {
+                        a {
+                            opacity: .5;
+                        }
+                    }
+                }
+
+                .link, a {
+                    display: inline-block;
+                    @include font-Mon(17px, $color_white, 400, 27px);
+                    margin-bottom: 30px;
+                    text-decoration: none;
+                    @include transition(opacity $basic_transition);
+                    &:hover, &:active {
+                        opacity: .5;
+                    }
+                    @include mq('phablet', max) {
+                        & {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+                
+                .list-item, .menu-item{
+                    &:last-child {
+                        .link, a {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    
+    .quickContact {
+        display: none;
+        @include font-Mon(25px, $color_white, 700, 34px);
+        text-decoration: none;
+        @include mq('tablet-wide', max) {
+            display: block;
+            margin-top: 50px;
+        }
+    }
+    
+    .container {
+        @include mq('tablet-wide', max) {
+            & {
+                @include justify-content(space-between);
+                @include flex-wrap(nowrap);
+            }
+        }
+        
+        @include mq('phablet', max) {
+            & {
+                @include justify-content(flex-start);
+                @include flex-wrap(wrap);
+            }
+        }
+        
+        
+    }
+    
+    .hideMobile {
+        @include mq('phablet', max) {
+            & {
+                display: none;
+            }
+        }
+    }
+    
+    &__toggler {
+        position: absolute;
+        top: -30px;
+        width: 170px;
+        height: 30px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url('../images/Union.svg');
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include align-content(center);
+        @include justify-content(center);
+        opacity: .8;
+        z-index: 3;
+        .item {
+            width: 10px;
+            height: 10px;
+            position: relative;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include align-content(center);
+            @include justify-content(center);
+            .icon {
+                position: absolute;
+                width: 100%;
+                display: inline-block;
+                height: 2px;
+                border-radius: 25px;
+                background: $color_white;
+                @include transition(all $basic_transition);
+                &:last-child {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        
+        &.open {
+            opacity: 1;
+            .icon {
+                &:last-child {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}

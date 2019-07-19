@@ -1,0 +1,436 @@
+.modal-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height:  calc(var(--vh, 1vh) * 100);
+    padding: 15px 0;
+    background: transparentize($color_main, .5);
+    z-index: 9999;
+    @include flex;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include align-content(center);
+    opacity: 1;
+    visibility: visible;
+    @include transition(all $basic_transition);
+
+    &.hdn {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .modal-content {
+        max-height: 100vh;
+        max-height: calc(var(--vh, 1vh) * 100);
+        overflow: hidden;
+        margin: auto;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+        background: $color_white;
+        padding: 60px;
+        position: relative;
+        min-width: 250px;
+        
+        &.scrollbar-inner.scroll-wrapper {
+            .scroll-element.scroll-y.scroll-scrolly_visible {
+                margin: 5px 10px 5px 0;
+            }
+        }
+        
+        .modal-content {
+            padding: 0;
+        }
+
+        &__inner {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            position: relative;
+            width: 100%;
+            max-height: 70vh;
+            max-height: calc(var(--vh, 1vh) * 70);
+            overflow: hidden;
+            @include font-Mon(14px, $color-main, 400, 22px);
+            
+            @include mq('tablet-wide',max) {
+                margin: 30px 0;
+                padding: 30px 0;
+            }
+            
+            &.scroll-content.scroll-scrolly_visible {
+                padding-right: 25px;
+            }
+            
+            .modal-content__inner {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .basicTxt {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(center);
+                width: 100%;
+                &.notBottomMargin {
+                    margin-bottom: 0;
+                }
+                .cpt {
+                    width: 100%;
+                    margin-bottom: 20px;
+                    &.h1 {
+                        @include font-Mon(36px, $color-main,700, 44px);
+                    }
+                    &.h2 {
+                        @include font-Mon(30px, $color-main,700, 38px);
+                    }
+                    &.h3 {
+                        @include font-Mon(26px, $color-main,700, 34px);
+                    }
+                }
+                .preCaptions {
+                    width: 100%;
+                    @include font-Mon(19px, $color_main, 400, 27px);
+                    margin-bottom: 20px;
+                }
+            }
+
+            /* style for CF7 plugin*/
+            .contactForm {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+
+                .titl {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    @include font-Mon(25px, $color_main, 700, 33px);
+                    &.nonMrg {
+                        margin-bottom: 5px;
+                    }
+                }
+
+                .subTitle {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    @include font-Mon(16px, $color_main, 400, 23px);
+                    margin-bottom: 40px;
+                }
+                
+                .form {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(flex-start);
+                    width: 100%;
+
+                    /*- contact form 7 component styles -*/
+                    .wpcf7-form-control-wrap {
+                        width: 100%;
+                    }
+
+                    .wpcf7-not-valid-tip {
+                        display: block;
+                        margin: 5px;
+                        @include font-Mon(12px, $color_false, 500, 20px);
+                    }
+                    .wpcf7-response-output{
+                        width: 100%;
+                        border-radius: 5px;
+                        border: 1px solid transparentize($color_main, .5);
+                        background: $color_green-light;
+                        color: $color_white;
+                        @include font-Mon(14px, $color_false, 500, 20px);
+                        margin: 15px 0;
+                        padding: 15px;
+                        &.wpcf7-validation-errors {
+                            border-color: $color_false;
+                            color: $color_false;
+                        }
+                        &.wpcf7-mail-sent-ok {
+                            color: $color_white;
+                            font-size: 16px;
+                            border-color: $color_green-light;
+                            display: none!important;
+                        }
+                    }
+
+                    .ajax-loader {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-size: 16px 16px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        z-index: 11;
+                        margin: 0;
+                        border-radius: 5px;
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            background: transparentize($color-main,.9);
+                            z-index: 10;
+                        }
+                    }
+                    
+                    form .form_group {
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                    
+                    
+                    /*- end -*/
+                    &_group {
+                        width: 100%;
+                        @include flex;
+                        @include flex-wrap(wrap);
+                        @include align-items(flex-start);
+                        @include justify-content(flex-start);
+                        margin-bottom: 20px;
+                        position: relative;
+                        &:last-of-type,
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        .lbl {
+                            display: block;
+                            width: 100%;
+                            margin-bottom: 5px;
+                            padding-left: 20px;
+                            @include font-Mon(14px, $color_main, 500, 22px);
+                        }
+
+                        .cst-inpt {
+                            width: 100%;
+                            border-radius: 5px;
+                            border: 1px solid transparentize($color_main, .5);
+                            outline: none;
+                            @include font-Mon(14px, $color_main, 400, 22px);
+                            padding: 0px 15px;
+                            min-height: 50px;
+
+                            @include placeholder {
+                                @include font-Mon(14px, transparentize($color_main, .5), 400, 22px);
+                                @include transition(opacity $basic_transition);
+                            }
+
+                            &:focus {
+                                @include placeholder {
+                                    opacity: 0;
+                                }
+                            }
+                        }
+
+                        .cst-txtArea {
+                            @extend .cst-inpt;
+                            resize: none;
+                            padding: 15px;
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+            
+            .successBlock {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include align-content(center);
+                @include justify-content(flex-start);
+                position: relative;
+                padding: 60px 60px 60px 0;
+                .carBlock {
+                    width: 200px;
+                    height: 150px;
+                    background-image: url('../images/car.svg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: bottom left;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1;
+                    
+                    @include mq('tablet',max) {
+                        opacity: .1;
+                    }
+                }
+                
+                .textBlock {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(flex-start);
+                    width: calc(100% - 200px);
+                    margin-left: 200px;
+                    @include font-Mon(14px, $color_main, 400, 22px);
+                    .big {
+                        width: 100%;
+                        display: block;
+                        margin-bottom: 25px;
+                        @include font-Mon(30px, $color_main, 500, 38px);
+                    }
+                    .small {
+                        width: 100%;
+                        display: block;
+                    }
+                    
+                    @include mq('tablet',max) {
+                        width: 100%;
+                        margin-left: 0;
+                        @include justify-content(center);
+                        position: relative;
+                        z-index: 2;
+                        .big,
+                        .small{
+                            text-align: center;
+                        }
+                    }
+                }
+                
+                @include mq('tablet',max) {
+                    padding: 60px 30px 80px 30px;
+                }
+                
+                &.newFull {
+                    padding: 100px 25px;
+                    .carBlock {
+                        width: 270px;
+                        height: 200px;
+                        bottom: 20px;
+                        left: 20px;
+                        opacity: .2;
+                    }
+                    .textBlock {
+                        width: 100%;
+                        margin-left: 0;
+                        position: relative;
+                        z-index: 2;
+                        .big {
+                            @include font-Mon(35px, $color_main, 700, 43px);
+                            margin-bottom: 10px;
+                            text-align: center;
+                        }
+                        .small {
+                            @include font-Mon(16px, $color_main, 400, 24px);
+                            text-align: center;
+                        }
+                    }
+                    @include mq('tablet',max) {
+                        padding: 100px 0;
+                    }
+                }
+            }
+            
+            .cubicSuccess {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+                width: 100%;
+                .cpt {
+                    width: 100%;
+                    text-align: center;
+                    margin-bottom: 40px;
+                    @include font-Mon(30px, $color_main, 600, 38px);
+                }
+                .countLine {
+                    width: 100%;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(center);
+                    margin-bottom: 20px;
+                    .txt {
+                        @include font-Mon(20px, transparentize($color_main,.5),500, 28px);
+                        margin-right: 15px;
+                    }
+                    .count {
+                        @include font-Mon(20px, $color_main,500, 28px);
+                    }
+                }   
+                
+                .bscTxt {
+                    @include font-Mon(16px, $color_main, 400, 24px);
+                    margin-bottom: 40px;
+                    width: 100%;
+                    text-align: center;
+                }
+                .imgLine {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(center);
+                    width: 100%;
+                    .img {
+                        width: 100%;
+                        max-width: 315px;
+                    }
+                }
+            }
+        }
+        
+        &.contact {
+            width: 100%;
+            max-width: 510px;
+        }
+        
+        &.success {
+            width: 100%;
+            max-width: 800px; 
+            padding: 0;
+        }
+        
+        &.cubicSuccess {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+        }
+        
+        @include mq('tablet-wide',max) {
+            padding: 30px;
+            margin: 0 15px;
+            max-height: 80vh;
+            max-height: calc(var(--vh, 1vh) * 80);
+        }
+    }
+
+    .closeModalWindow {
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('../images/x.svg');
+        @include transition(all $basic_transition);
+        z-index:10;
+
+        &:hover {
+            transform: scale(1.25);
+        }
+    }
+}

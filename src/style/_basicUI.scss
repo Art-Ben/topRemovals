@@ -1,0 +1,531 @@
+/*-- basic site styles --*/
+a,
+button {
+    cursor: url('../images/Pointer.svg'), pointer;
+}
+
+.site-wrapper {
+    padding-top: $header_height;
+
+    @include mq('phablet', max) {
+        padding-top: 100px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: $SiteContainer;
+
+    @include mq('desktop-wide', max) {
+        max-width: 1170px;
+    }
+
+    @include mq('desktop', max) {
+        padding: 0 30px;
+        max-width: 100%;
+    }
+}
+
+.flex {
+    @include flex;
+
+    &.wrap {
+        @include flex-wrap(wrap);
+    }
+
+    &.column {
+        @include flex-direction(column);
+    }
+
+    &.vr-algn__top {
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+    }
+
+    &.vr-algn__center {
+        @include align-items(center);
+        @include align-content(center);
+    }
+
+    &.vr-algn__bottom {
+        @include align-items(flex-end);
+        @include align-content(flex-end);
+    }
+
+    &.hr-algn__left {
+        @include justify-content(flex-start);
+    }
+
+    &.hr-algn__center {
+        @include justify-content(center);
+    }
+
+    &.hr-algn__right {
+        @include justify-content(flex-end);
+    }
+
+    &.hr-algn__bet {
+        @include justify-content(space-between);
+    }
+}
+
+/*-- end --*/
+
+/*-- header style h1-h6 --*/
+
+.captions {
+    @include font-Mon(14px, $color_main, 400, 110%);
+
+    &_h1 {
+        font-size: 70px;
+        font-weight: 700;
+    }
+
+    &_h2 {
+        font-size: 50px;
+        font-weight: 700;
+
+        @include mq('tablet', max) {
+            font-size: 40px;
+        }
+
+        @include mq('phablet', max) {
+            font-size: 35px;
+        }
+    }
+
+    &_h3 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    &_h4 {
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    &_h5 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &_h6 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+
+/*-- end --*/
+
+/*-- basic text styles --*/
+
+.text {
+    @include font-Mon(14px, $color_main, 400, 120%);
+
+    &_big {
+        font-size: 16px;
+    }
+
+    &_bold {
+        font-weight: 700;
+    }
+
+    &_italic {
+        font-style: italic;
+    }
+
+    &_light {
+        font-weight: 300;
+    }
+
+    &_Cav {
+        font-family: 'Caveat', sans-serif;
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+    &--left {
+        text-align: left;
+    }
+
+    &--right {
+        text-align: right;
+    }
+
+    &--uppercase {
+        text-transform: uppercase;
+    }
+
+    &--preheader {
+        font-size: 30px;
+    }
+
+    &_medium {
+        font-weight: 500;
+    }
+
+    &_full {
+        width: 100%;
+        display: inline-block;
+    }
+
+    @include mq('phablet', max) {
+        line-height: 26px;
+    }
+}
+
+/*-- end --*/
+
+/*-- basic button styles --*/
+
+.button {
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include align-content(center);
+    @include justify-content(center);
+    padding: 20px 30px;
+    border: none;
+    outline: none;
+    @include font-Cav(25px, $color_main, 700, 100%);
+    @include box-shadow(0, 0, 10px, transparentize($color_main, .75));
+    border-radius: 5px;
+    text-decoration: none;
+    @include transition(opacity $basic_transition);
+    opacity: .6;
+    cursor: url('../images/icons/Pointer.svg'), pointer;
+
+    &_full {
+        width: 100%;
+        padding: 12px 20px;
+    }
+
+    &_white {
+        background: $color_white;
+    }
+
+    &_gradient {
+        background: $color_green-light__gradient;
+    }
+
+    &_green {
+        background: $color_green-light;
+    }
+
+    &:hover,
+    &:active {
+        opacity: 1;
+    }
+
+    &.nonHover {
+        opacity: 1;
+
+        &:hover,
+        &:active {
+            opacity: 1;
+        }
+    }
+
+    &_in-form {
+        min-height: 50px;
+        padding: 0 30px;
+        width: 100%;
+    }
+
+    @include mq('phablet', max) {
+        padding: 10px 15px;
+        min-height: 50px;
+    }
+}
+
+/*-- end --*/
+
+/*-- forms --*/
+form {
+    width: 100%;
+}
+
+.formGroup {
+    width: 100%;
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(flex-start);
+    margin-bottom: 20px;
+
+    .cst-label {
+        width: 100%;
+        display: inline-block;
+        @include font-Mon(14px, $color_white, 500, 22px);
+        padding: 0 20px;
+        margin-bottom: 10px;
+    }
+
+    .cst-input {
+        width: 100%;
+        min-height: 50px;
+        background: transparentize($color_white, .9);
+        @include font-Mon(14px, transparentize($color_white, .6), 400, 22px);
+        padding: 15px 20px;
+        outline: none;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        @include transition(all $basic_transition);
+
+        @include placeholder {
+            @include font-Mon(14px, transparentize($color_white, .6), 400, 22px);
+            @include transition(all $basic_transition);
+        }
+
+        &:focus {
+            @include placeholder {
+                color: transparent;
+            }
+
+            @include box-shadow(2px, 2px, 6px, transparentize($color_main, .82));
+        }
+    }
+
+    .cst-textarea {
+        width: 100%;
+        min-height: 100px !important;
+        max-height: 100px;
+        resize: none;
+        background: transparentize($color_white, .9);
+        @include font-Mon(14px, transparentize($color_white, .6), 400, 22px);
+        padding: 15px 20px;
+        outline: none;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        @include transition(all $basic_transition);
+
+        @include placeholder {
+            @include font-Mon(14px, transparentize($color_white, .6), 400, 22px);
+            @include transition(all $basic_transition);
+        }
+
+        &:focus {
+            @include placeholder {
+                color: transparent;
+            }
+
+            @include box-shadow(2px, 2px, 6px, transparentize($color_main, .82));
+        }
+    }
+
+    .cst-submit {
+        width: 100%;
+        min-height: 50px;
+        margin-top: 20px;
+        border-radius: 5px;
+        border: 1px solid $color_white;
+        outline: none;
+        background: transparent;
+        @include font-Cav(25px, $color_white, 700, 35px);
+        @include transition(all $basic_transition);
+
+        &:hover,
+        &:active {
+            background: $color_white;
+            color: $color_main;
+        }
+    }
+}
+
+.ajax-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 16px 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 11;
+    margin: 0;
+    border-radius: 5px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: transparentize($color-main, .9);
+        z-index: 10;
+    }
+}
+
+/*-- end--*/
+
+
+
+.form {
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(flex-start);
+    width: 100%;
+
+    /*- contact form 7 component styles -*/
+    .wpcf7-form-control-wrap {
+        width: 100%;
+    }
+
+    .wpcf7-not-valid-tip {
+        display: block;
+        margin: 5px;
+        @include font-Mon(12px, $color_false, 500, 20px);
+    }
+
+    .wpcf7-response-output {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid transparentize($color_main, .5);
+        background: $color_green-light;
+        color: $color_white;
+        @include font-Mon(14px, $color_false, 500, 20px);
+        margin: 15px 0;
+        padding: 15px;
+
+        &.wpcf7-validation-errors {
+            border-color: $color_false;
+            color: $color_false;
+        }
+
+        &.wpcf7-mail-sent-ok {
+            color: $color_white;
+            font-size: 16px;
+            border-color: $color_green-light;
+            display: none;
+        }
+    }
+
+    /*- end -*/
+    &_group {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 20px;
+
+        &:last-of-type,
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .lbl {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            padding-left: 20px;
+            @include font-Mon(14px, $color_main, 500, 22px);
+        }
+
+        .cst-inpt {
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid transparentize($color_main, .5);
+            outline: none;
+            @include font-Mon(14px, $color_main, 400, 22px);
+            padding: 0px 15px;
+            min-height: 50px;
+
+            @include placeholder {
+                @include font-Mon(14px, transparentize($color_main, .5), 400, 22px);
+                @include transition(opacity $basic_transition);
+            }
+
+            &:focus {
+                @include placeholder {
+                    opacity: 0;
+                }
+            }
+
+        }
+
+        .cst-txtArea {
+            @extend .cst-inpt;
+            resize: none;
+            padding: 15px;
+            height: 100px;
+        }
+    }
+
+    &.black {
+        .cst-inpt {
+            background: transparentize($color_white, .9);
+            color: $color_white;
+
+            @include placeholder {
+                color: transparentize($color_white, .6)
+            }
+        }
+
+        .lbl {
+            color: $color_white;
+        }
+
+        .button {
+            background: transparent;
+            color: $color_white;
+            border: 1px solid $color_white;
+
+            &:hover {
+                background: $color_white;
+                color: $color_main;
+            }
+        }
+    }
+}
+
+.eor404 {
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(center);
+    width: 100%;
+    padding: 200px 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &__content {
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(center);
+
+        .titl {
+            display: block;
+            width: 100%;
+            max-width: 825px;
+            text-align: center;
+            margin-bottom: 50px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .text {
+            width: 100%;
+
+            .line {
+                display: block;
+                width: 100%;
+                text-align: center;
+                @include font-Mon(30px, $color_green-light, 400, 38px);
+                margin-bottom: 10px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+}

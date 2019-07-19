@@ -1,0 +1,31 @@
+/*-- screen size for adaptive version --*/
+$breakpoints: (
+    "small-phone":  331px,
+    "phone":        401px,
+    "phone-wide":   481px,
+    "phablet":      561px,
+    "tablet-small": 641px,
+    "tablet":       769px,
+    "tablet-wide":  993px,
+    "desktop":      1171px,
+    "desktop-wide": 1441px,
+    "xxl":1920px
+);
+/*-- end --*/
+
+/*-- colors of site --*/
+$color_false:#C96D72;
+$color_shad:#C38E68;
+$color_white:#fff;
+$color_main:#2A292E;
+$color_main-dark:#232630;
+$color_green-light:#C1E7AB;
+$color_green--gradient: linear-gradient(90deg, #9BC782 0%, #C1E7AB 100%);
+$color_green-light__gradient: linear-gradient(90deg, #A5D58A 0%, #C1E7AB 100%);
+$basic_transition: .6s;
+$header_height:80px;
+$add_color: #dadada;
+/*-- end--*/
+
+/*----*/
+$SiteContainer:1370px;

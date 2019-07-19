@@ -1,0 +1,88 @@
+@import 'mixins';
+@import 'variables';
+@import 'reset';
+@import 'animation';
+
+
+/*-- import of site component --*/
+@import 'basicUI';
+@import 'header';
+@import 'footer';
+@import 'backHome';
+@import 'jqueryScrollbar';
+@import 'datepicker';
+    /*- select2 css file -*/
+    @import 'select2';
+    /*- end -*/
+/*-- end --*/
+
+
+
+
+/*- Main Page -*/
+
+/*-- 1-st section --*/
+@import 'primary';
+/*-- end --*/
+/*-- 2-d section --*/
+@import 'quote';
+/*-- end --*/
+/*-- 3-d section --*/
+@import 'additionalMenu';
+/*-- end --*/
+/*-- 4-th section --*/
+@import 'sizeSection';
+/*-- end --*/
+/*-- 5-th section --*/
+@import 'testimonials';
+/*-- end --*/
+/*-- 6-th section --*/
+@import 'whyUs';
+/*-- end --*/
+/*-- sliderNav --*/
+@import 'sliderNav';
+/*-- end --*/
+
+/*- End of Main Page -*/
+
+
+/*-- single service page --*/
+@import 'singleService';
+/*- End of single service page -*/
+
+/*- blogs pages -*/
+@import 'pageTitle';
+@import 'blog';
+/*- end -*/
+
+/*- simple pages -*/
+@import 'simplePage';
+/*- end -*/
+
+/*- inventory calculation page -*/
+@import 'inventoryCalc';
+/*-end -*/
+
+/*- get free quote page (multisteps form) -*/
+@import 'getFreeQuote';
+/*- end -*/
+
+
+/*- single city page -*/
+@import 'singleSityPage';
+/*-- end --*/
+
+/*- modal windows -*/
+@import 'modalWindow';
+/*- end -*/
+
+* {
+    box-sizing: border-box;
+}
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+

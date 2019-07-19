@@ -1,0 +1,299 @@
+$whyUsSliderHeight:255px;
+
+.primaryWhy {
+    padding: 100px 0;
+    position: relative;
+
+    .boxLeftObject {
+        position: absolute;
+        left: 0;
+        top: 150px;
+    }
+
+    .boxRightObject {
+        right: 0;
+        position: absolute;
+        top: 220px;
+    }
+
+    .boxRightObject, .boxLeftObject {
+        @include mq('tablet-wide', max) {
+            display: none;
+        }
+    }
+    
+    .topHeaders {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 140px;
+
+        &_top,
+        &_bottom {
+            width: 100%;
+            display: inline-block;
+        }
+
+        &_top {
+            @include font-Cav(30px, transparentize($color_main, .5), 400, 110%);
+            margin-bottom: 10px;
+        }
+        @include mq('tablet', max) {
+            margin-bottom: 80px;
+        }
+        @include mq('phablet', max) {
+            margin-bottom: 10px;
+        }
+    }
+
+    &__slider {
+        width: 100%;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+        
+        .item {
+            width: 100%;
+            max-width: 180px;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include align-content(center);
+            @include justify-content(center);
+            float: left;
+            position: relative;
+            outline: none;
+            margin-right: 100px;
+            min-height: 315px;
+            .imageCont {
+                width: 100%;
+                max-width: 180px;
+                height: 180px;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include justify-content(center);
+                padding: 10px;
+                @include box-shadow(1px, 1px, 5px, transparentize($color_main, .9));
+                background: transparentize($add_color, .8);
+                border-radius: 30px;
+                margin-bottom: 25px;
+                position: relative;
+                z-index: 1;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            .textCont {
+                width: 100%;
+                max-width: 165px;
+                text-align: center;
+                @include font-Mon(16px, $color_main-dark, 600, 20px);
+                position: relative;
+                z-index: 1;
+            }
+
+            .hoverCont {
+                position: absolute;
+                width: calc(100% + 80px);
+                height: 100%;
+                min-height: 315px;
+                top: 0;
+                z-index: 3;
+                padding: 0 45px;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include align-content(center);
+                @include justify-content(center);
+                text-align: center;
+                border-radius: 30px;
+                background: transparentize(#f8f8f8, .35);
+                @include box-shadow(0px, 3px, 4px, transparentize($color_main, .93));
+                @include font-Mon(16px, $color_main-dark, 300, 24px);
+                opacity: 0;
+                visibility: hidden;
+                @include transition(opacity, $basic_transition);
+                
+                .tit {
+                    display: none;
+                    text-align: center;
+                    width: 100%;
+                    @include font-Mon(16px, $color_main, 600, 24px);
+                    margin-bottom: 10px;
+                    @include mq('phablet',max) {
+                        display: inline-block;
+                        
+                    }
+                }
+            }
+
+            &.is-selected {
+                .hoverCont {
+                    visibility: visible;
+                    opacity: 1;
+                }
+
+                .textCont{
+                    opacity: 0;
+                }
+                .imageCont {
+                    background: transparent;
+                    box-shadow: none;
+                    filter: blur(2px);
+                }
+            }
+            
+            @include mq('phablet', max) {
+                width: 100%;
+                max-width: 100%;
+                .hoverCont {
+                    max-width: unset;
+                }
+            }
+        }
+    }
+    
+    .flickity-viewport {
+        min-height: $whyUsSliderHeight;
+        padding: 0 40px;
+    }
+    
+    .flickity-page-dots {
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include justify-content(center);
+        @include align-content(center);
+        width: 100%;
+        margin-top: 60px;
+        counter-reset: dotsNum;
+
+        .dot {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include justify-content(center);
+            width: 55px;
+            height: 55px;
+            @include transition(all $basic_transition);
+            counter-increment: dotsNum;
+            @include font-Mon(16px, transparentize($color_main-dark, .7), 300, 24px);
+            cursor: url(../images/icons/Pointer.svg), pointer;
+            margin-right: 5px;
+            border-radius: 50%;
+
+            &:after {
+                content: counter(dotsNum);
+                display: inline-block;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &.is-selected {
+                color: $color_main-dark;
+                font-weight: 700;
+                background: url('../images/dotCircle.svg');
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+                &:hover,
+                &:active {
+                    color: $color_main-dark;
+                    font-weight: 700;
+                }
+            }
+
+            &:hover,
+            &:active {
+                color: transparentize($color_main-dark, .2);
+                font-weight: 500;
+            }
+        }
+        
+        @include mq('phablet',max) {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+    }
+    
+    .flickity-button {
+        position: absolute;
+        bottom: 7.5px;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include align-content(center);
+        @include justify-content(center);
+        width: 40px;
+        height: 40px;
+        border: none;
+        outline:  none;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: 9;
+        border-radius: 50%;
+        background: transparentize($color_green-light, .8);
+        cursor: url(../images/icons/Pointer.svg), pointer;
+        svg {
+            display: none;
+        }
+        &.previous, &.next {
+            &:after {
+                content: '';
+                width: 10px;
+                height: 20px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+        &.previous {
+            left: 0;
+            &:after {
+                background: url('../images/icons/arrowLeft.svg');
+            }
+            
+        }
+        &.next {
+            right: 0;
+            &:after {
+                background: url('../images/icons/arrowRight.svg');
+            }
+        }
+        &:disabled {
+            opacity: .5;
+        }
+        
+        @include mq('tablet', max) {
+            display: none;
+        }
+        
+        @include mq('phablet', max) {
+            @include flex;
+            margin-top: 25px;
+            background: transparent;
+            bottom: 0;
+            &:disabled {
+                opacity: 1;
+            }
+            &:after {
+                width: 8px;
+                height: 16px;
+            }
+        }
+    }
+    
+    @include mq('phablet', max) {
+        padding-top: 45px;
+        padding-bottom: 45px;
+    }
+}

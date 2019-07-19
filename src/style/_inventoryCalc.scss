@@ -1,0 +1,593 @@
+.inventoryCalc {
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(center);
+    width: 100%;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+
+    .imgAbsl {
+        position: absolute;
+        width: auto;
+
+        &.img1 {
+            top: 50px;
+            right: 0;
+        }
+
+        &.img2 {
+            top: 250px;
+            left: 0;
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        @include mq('tablet-wide', max) {
+            display: none;
+        }
+    }
+
+    .topHeaders {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 60px;
+
+        &_top,
+        &_bottom {
+            width: 100%;
+            display: inline-block;
+        }
+
+        &_top {
+            @include font-Cav(30px, transparentize($color_main, .5), 400, 110%);
+            margin-bottom: 10px;
+        }
+
+        @include mq('tablet-wide', max) {
+            margin-bottom: 50px;
+        }
+
+        @include mq('phablet', max) {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__content {
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+        width: 100%;
+    }
+
+    &__places {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(center);
+        margin-bottom: 40px;
+
+        &--nav {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            width: 100%;
+            max-width: 900px;
+            min-height: 85px;
+            border-bottom: 2px solid transparentize($color_main, .5);
+            position: relative;
+            margin-bottom: 10px;
+
+            .marker {
+                width: 105px;
+                height: auto;
+                position: absolute;
+                left: 0;
+                bottom: 3px;
+                @include transition(all $basic_transition);
+
+                @include mq('tablet-wide', max) {
+                    display: none;
+                }
+            }
+
+            .markerTablet {
+                width: 105px;
+                height: auto;
+                position: relative;
+                display: none;
+                margin-bottom: 3px;
+
+                @include mq('tablet-wide', max) {
+                    display: block;
+                }
+            }
+
+            @include mq('tablet-wide', max) {
+                margin-bottom: 20px;
+            }
+
+            @include mq('phablet', max) {
+                margin-bottom: 10px;
+            }
+
+        }
+
+        &--slider {
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
+            outline: none;
+            position: relative;
+
+            .slide {
+                width: calc(100% / 8);
+                text-align: center;
+                @include font-Cav(30px, transparentize($color_main, .5), 400, 38px);
+                cursor: url('../images/Pointer.svg'), pointer;
+                @include transition(color $basic_transition);
+                position: relative;
+                z-index: 1;
+
+                &.is-nav-selected {
+                    color: $color_shad;
+                }
+
+                @include mq('tablet-wide', max) {
+                    & {
+                        width: 100px;
+                        margin-right: 35px;
+                    }
+                }
+
+                @include mq('phablet', max) {
+                    & {
+                        width: 100%;
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 20px;
+                        line-height: 28px;
+                    }
+                }
+            }
+
+            .flickity-button {
+                display: none;
+                position: absolute;
+                top: 0;
+                width: 10px;
+                height: 20px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-color: transparent;
+                border: none;
+                z-index: 5;
+
+                &:disabled {
+                    display: none;
+                }
+
+                &.next {
+                    right: 0;
+                    background-image: url('../images/icons/arrowRight.svg');
+                }
+
+                &.previous {
+                    left: 0;
+                    background-image: url('../images/icons/arrowLeft.svg');
+                }
+
+                .flickity-button-icon {
+                    display: none;
+                }
+
+                @include mq('phablet', max) {
+                    display: block;
+                }
+            }
+
+        }
+
+        &--items {
+            width: 790px;
+            overflow: hidden;
+            outline: none;
+
+            .slide {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(space-between);
+                outline: none;
+                margin-right: 20px;
+
+                .column {
+                    width: 100%;
+                    max-width: 330px;
+
+                    .calcLine {
+                        width: 100%;
+                        @include flex;
+                        @include flex-wrap(wrap);
+                        @include align-items(center);
+                        @include justify-content(flex-start);
+                        margin-bottom: 20px;
+
+                        &__text {
+                            width: calc(100% - 95px);
+                            @include font-Mon(16px, $color_main, 400, 24px);
+                        }
+
+                        &__btns {
+                            width: 95px;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include justify-content(space-between);
+                            @include align-items(center);
+
+                            .btn {
+                                width: 20px;
+                                height: 20px;
+                                @include flex;
+                                @include flex-wrap(wrap);
+                                @include justify-content(center);
+                                @include align-items(center);
+                                border-radius: 3px;
+                                border: 1px solid transparentize($color_main, .5);
+                                @include transition(all $basic_transition);
+                                position: relative;
+
+                                .icon {
+                                    width: 50%;
+                                    height: 1px;
+                                    background: transparentize($color_main, .5);
+                                    @include transition(all $basic_transition);
+                                }
+
+                                &.plus {
+                                    .icon {
+                                        &:last-child {
+                                            transform: rotate(90deg);
+                                            transform-origin: center center;
+                                            position: absolute;
+                                        }
+                                    }
+                                }
+
+                                &:hover {
+                                    background: $color_main;
+                                    border-color: $color_main;
+
+                                    .icon {
+                                        background: $color_white;
+                                    }
+                                }
+                            }
+
+                            .scope {
+                                @include font-Mon(16px, transparentize($color_main, .5), 400, 24px);
+
+                                &.noEmpty {
+                                    color: $color_main;
+                                }
+                            }
+                        }
+                    }
+
+                    @include mq('tablet-wide', max) {
+                        & {
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
+                }
+
+                .txtArea {
+                    width: 100%;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(flex-start);
+
+                    .tit {
+                        width: 100%;
+                        text-align: left;
+                        @include font-Mon(14px, $color_main, 500, 22px);
+                        padding-left: 20px;
+                        margin-bottom: 10px;
+                    }
+
+                    .cstArea {
+                        outline: none;
+                        border: 1px solid transparentize($color_main, .5);
+                        border-radius: 5px;
+                        width: 100%;
+                        resize: none;
+                        min-height: 245px;
+
+                        @include placeholder {
+                            @include font-Mon(16px, transparentize($color_main, .4), 400, 24px);
+                            @include transition(opacity $basic_transition);
+                        }
+
+                        @include font-Mon(16px, $color_main, 400, 24px);
+                        @include transition(opacity $basic_transition);
+                        padding: 20px;
+
+                        &:focus {
+                            @include placeholder {
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    // fix some bug with slider position
+                    padding-left: 5px;
+                }
+            }
+
+            @include mq('desktop-wide', max) {
+                & {
+                    width: 750px;
+                }
+            }
+
+            @include mq('tablet-wide', max) {
+                & {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+
+    }
+
+
+
+    &__form {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(space-between);
+
+        &--total {
+            width: 100%;
+            max-width: 445px;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+
+            .summary {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+                position: relative;
+                margin-bottom: 20px;
+
+                &_buttons {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(space-between);
+                    border: 1px solid $color_green-light;
+                    border-radius: 5px;
+                    width: 100%;
+                    padding: 20px 20px 30px 20px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+
+                    .contains {
+                        @include flex;
+                        @include flex-wrap(wrap);
+                        @include align-items(flex-start);
+                        @include justify-content(flex-start);
+
+                        .titl {
+                            width: 100%;
+                            margin-bottom: 5px;
+                            display: inline-block;
+                            @include font-Mon(16px, $color_main, 400, 24px);
+                        }
+
+                        .subTot {
+                            width: 100%;
+                            display: inline-block;
+                            @include font-Mon(16px, transparentize($color_main, .5), 400, 24px);
+                        }
+                    }
+
+                    .moreList {
+                        display: none;
+                        @include font-Mon(16px, $color_shad, 500, 24px);
+                        text-decoration: none;
+                        @include transition(color $basic_transition);
+
+                        &:hover {
+                            color: transparentize($color_main, .1);
+                        }
+                    }
+
+                    &.open {
+                        border-bottom-left-radius: 5px;
+                        border-bottom-right-radius: 5px;
+                    }
+                }
+
+                &__list {
+                    width: 100%;
+                    border-left: 1px solid $color_green-light;
+                    border-right: 1px solid $color_green-light;
+                    border-bottom: 1px solid $color_green-light;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    padding: 20px 20px 30px 20px;
+                    display: none;
+
+                    .cstArea {
+                        outline: none;
+                        border: 1px solid transparentize($color_main, .5);
+                        border-radius: 5px;
+                        width: 100%;
+                        resize: none;
+                        min-height: 100px;
+
+                        @include placeholder {
+                            @include font-Mon(16px, transparentize($color_main, .4), 400, 24px);
+                            @include transition(opacity $basic_transition);
+                        }
+
+                        @include font-Mon(16px, $color_main, 400, 24px);
+                        @include transition(opacity $basic_transition);
+                        padding: 20px;
+
+                        &:focus {
+                            @include placeholder {
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    &--item {
+                        width: 100%;
+                        @include flex;
+                        @include flex-wrap(wrap);
+                        @include align-items(flex-start);
+                        @include justify-content(flex-start);
+                        margin-bottom: 15px;
+
+                        &.hide {
+                            display: none;
+                        }
+
+                        .titl {
+                            width: 100%;
+                            @include font-Mon(16px, $color_main, 400, 24px);
+                            margin-bottom: 15px;
+                        }
+
+                        .calcLine {
+                            width: 100%;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(center);
+                            @include justify-content(flex-start);
+                            margin-bottom: 20px;
+
+                            &__text {
+                                width: calc(100% - 95px);
+                                @include font-Mon(16px, transparentize($color_main, .5), 400, 24px);
+                            }
+
+                            &__btns {
+                                width: 95px;
+                                @include flex;
+                                @include flex-wrap(wrap);
+                                @include justify-content(space-between);
+                                @include align-items(center);
+
+                                .btn {
+                                    width: 20px;
+                                    height: 20px;
+                                    @include flex;
+                                    @include flex-wrap(wrap);
+                                    @include justify-content(center);
+                                    @include align-items(center);
+                                    border-radius: 3px;
+                                    border: 1px solid transparentize($color_main, .8);
+                                    @include transition(all $basic_transition);
+                                    position: relative;
+                                    cursor: default;
+
+                                    .icon {
+                                        width: 50%;
+                                        height: 1px;
+                                        background: transparentize($color_main, .8);
+                                        @include transition(all $basic_transition);
+                                    }
+
+                                    &.plus {
+                                        .icon {
+                                            &:last-child {
+                                                transform: rotate(90deg);
+                                                transform-origin: center center;
+                                                position: absolute;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .scope {
+                                    @include font-Mon(16px, transparentize($color_main, .5), 400, 24px);
+
+                                    &.noEmpty {
+                                        color: $color_main;
+                                    }
+                                }
+
+
+                            }
+
+                            &.hide {
+                                display: none;
+                            }
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            .btnLine {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+
+                .big {
+                    display: inline-block;
+                    width: 100%;
+                    @include font-Cav(35px, $color_main, 700, 43px);
+                    margin-bottom: 10px;
+                    text-align: center;
+                }
+
+                .button {
+                    width: 100%;
+                    max-width: 100%;
+                    @include justify-content(center);
+                }
+            }
+
+            @include mq('desktop-wide', max) {
+                max-width: 380px;
+            }
+
+
+            @include mq('tablet-wide', max) {
+                & {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+}

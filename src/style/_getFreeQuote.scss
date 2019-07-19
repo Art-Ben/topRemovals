@@ -1,0 +1,1171 @@
+.getFreeQuote {
+    width: 100%;
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(center);
+    padding: 100px 0;
+    overflow: hidden;
+
+    @include mq('phablet', max) {
+        padding: 50px 0;
+    }
+
+    .container {
+        overflow: hidden;
+    }
+
+    .topHeaders {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(flex-start);
+        margin-bottom: 40px;
+
+        &_top,
+        &_bottom {
+            width: 100%;
+            display: inline-block;
+        }
+
+        &_top {
+            @include font-Cav(30px, transparentize($color_main, .5), 400, 110%);
+            margin-bottom: 10px;
+
+            @include mq('phablet', max) {
+                max-width: 225px;
+            }
+        }
+
+        @include mq('tablet-wide', max) {
+            margin-bottom: 55px;
+        }
+
+        @include mq('phablet', max) {
+            margin-bottom: 10px;
+            @include justify-content(center);
+
+        }
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .cities {
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include align-content(flex-start);
+        @include justify-content(center);
+        width: 100%;
+        min-height: 100%;
+        height: auto;
+        z-index: 6;
+        position: absolute;
+        top: -100%;
+        left: 0;
+        background: $color_white;
+        @include transition(all $basic_transition);
+        visibility: hidden;
+        opacity: 0;
+
+        &Form {
+            width: 100%;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(center);
+
+            .citiesSelect {
+                width: 100%;
+                max-width: 550px;
+                @include font-Mon(20px, $color_main, 400, 28px);
+            }
+        }
+
+        &.open {
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @include mq('phablet', max) {
+            padding: 0 15px;
+        }
+    }
+
+    &--content {
+        width: 100%;
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+        position: relative;
+
+
+
+        .info {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            max-width: 375px;
+            background: transparentize($color_white, .6);
+            padding: 5px;
+
+            .titl {
+                width: 100%;
+                display: block;
+                margin-bottom: 10px;
+                @include font-Mon(16px, $color_main, 400, 24px);
+            }
+
+            .stepsList {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+                width: 100%;
+                position: relative;
+
+                &__titl {
+                    @include font-Mon(30px, $color_main, 500, 38px);
+                    width: 100%;
+
+                    .st {
+                        @include font-Mon(30px, $color_main, 500, 38px);
+                        width: 100%;
+                        display: inline-block;
+
+                        &.hdn {
+                            display: none;
+                        }
+
+                        @include mq('phablet', max) {
+                            font-size: 25px;
+                            line-height: 33px;
+                            text-align: center;
+                        }
+                    }
+                }
+
+                .step {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(center);
+                    @include justify-content(flex-start);
+                    width: 100%;
+                    position: relative;
+                    @include transition(opacity $basic_transition);
+
+                    .inner {
+                        display: block;
+                        width: 100%;
+                        text-align: left;
+                        @include font-Mon(14px, $color_main, 400, 22px);
+                        padding-left: 35px;
+                        background-size: 20px 20px;
+                        background-position: left center;
+                        background-repeat: no-repeat;
+                        background-image: url('../images/listMarker.svg');
+                    }
+
+                    &:before {
+                        width: 1px;
+                        height: 30px;
+                        margin: 5px auto 5px 10px;
+                        content: ' ';
+                        position: relative;
+                        display: block;
+                        background: $color_main;
+                    }
+
+                    &.vbsbl {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+
+                    &.hdn {
+                        visibility: hidden;
+                        opacity: 0;
+                    }
+                }
+            }
+
+            &.hdn {
+                display: none;
+            }
+
+            @include mq('desktop-wide', max) {
+                max-width: 350px;
+            }
+
+            @include mq('tablet-wide', max) {
+                max-width: 100%;
+                width: 100%;
+                position: relative;
+                margin-bottom: 15px;
+
+                .stepsList {
+                    .step {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &--form {
+        width: 810px;
+        position: relative;
+        outline: none;
+        z-index: 1;
+        margin-left: 415px;
+        overflow: hidden;
+        margin-bottom: 50px;
+
+        @include mq('desktop-wide', max) {
+            max-width: calc(100% - 350px);
+        }
+
+        @include mq('tablet-wide', max) {
+            max-width: 100%;
+            width: 100%;
+            margin-left: 0;
+        }
+
+        &.hdn {
+            display: none;
+        }
+
+        &_nav {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(flex-start);
+            width: 100%;
+
+            &-inner {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(flex-start);
+                width: 100%;
+                max-width: 810px;
+                margin-left: 415px;
+
+                @include mq('tablet-wide', max) {
+                    max-width: 100%;
+                    width: 100%;
+                    margin-left: 0;
+                }
+
+                .line {
+                    width: 100%;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(flex-start);
+                    position: relative;
+                    min-height: 85px;
+                    border-bottom: 2px solid transparentize($color_main, .5);
+                    margin-bottom: 10px;
+                }
+
+                .marker {
+                    width: 105px;
+                    position: absolute;
+                    left: calc(50% - 50px);
+                    @include transition(all .6s);
+                }
+
+                .navItems {
+                    width: 100%;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(center);
+                    @include justify-content(space-between);
+                    @include font-Cav(30px, transparentize($color_main, .5), 400, 38px);
+
+                    .item {
+                        display: inline-block;
+                        @include transition(color $basic_transition);
+
+                        &.active {
+                            color: $color_shad;
+                        }
+                    }
+                }
+            }
+        }
+
+        .form-slide {
+            min-height: 380px;
+            width: 100%;
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            @include align-content(center);
+            @include justify-content(center);
+            margin-right: 25px;
+            padding-left: 5px;
+
+            .back {
+                width: 15px;
+                height: 30px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-image: url('../images/icons/arrowLeftBold.svg');
+                position: relative;
+                margin-right: 20px;
+                @include transition(all $basic_transition);
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+
+            .inputLine {
+                position: relative;
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(center);
+                @include justify-content(flex-end);
+
+                .back {
+                    width: 15px;
+                    height: 30px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-image: url('../images/icons/arrowLeftBold.svg');
+                    position: relative;
+                    margin-right: 20px;
+                    @include transition(all $basic_transition);
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                .confirm {
+                    width: 15px;
+                    height: 30px;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-image: url('../images/icons/arrowRightBold.svg');
+                    position: relative;
+                    margin-left: 20px;
+                    @include transition(all $basic_transition);
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                .inputGroup {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(center);
+                    @include justify-content(flex-start);
+                    width: 100%;
+                    max-width: calc(100% - 70px);
+                    min-height: 60px;
+                    border-radius: 5px;
+                    border: 1px solid transparentize($color_main, .5);
+                    position: relative;
+                    &.err {
+                        border-color: $color_false;
+
+                        .inpt {
+                            @include placeholder {
+                                color: $color_false;
+                            }
+                        }
+                    }
+
+                    .inpt {
+                        border: none;
+                        outline: none;
+                        background: $color_white;
+                        @include font-Mon(16px, $color_main, 400, 24px);
+                        padding: 15px;
+                        height: 100%;
+                        width: 100%;
+
+                        @include placeholder {
+                            @include font-Mon(16px, ransparentize($color_main, .4), 400, 24px);
+                            @include transition(opacity $basic_transition);
+                        }
+
+                        &:focus {
+                            @include placeholder {
+                                opacity: 0;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+
+            .radioBtnLine {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(center);
+                width: calc(100% - 40px);
+
+                .group {
+                    width: 100%;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(flex-start);
+                    position: relative;
+                    margin-bottom: 35px;
+
+                    input[type="radio"] {
+                        position: absolute;
+                        visibility: hidden;
+                        opacity: 0;
+                        display: none;
+
+                        & + label {
+                            position: relative;
+                            padding-left: 36px;
+                            cursor: url('../images/icons/Pointer.svg'), pointer;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(center);
+                            @include align-content(center);
+                            @include justify-content(flex-start);
+                            @include font-Mon(16px, $color-main, 400, 20px);
+
+                            &:before {
+                                position: absolute;
+                                left: 0;
+                                width: 18px;
+                                height: 18px;
+                                content: ' ';
+                                border: 1px solid $color_green-light;
+                                background: transparent;
+                                border-radius: 50%;
+                            }
+
+                            &:after {
+                                position: absolute;
+                                content: '';
+                                left: 5px;
+                                width: 0px;
+                                height: 0px;
+                                @include transition(all $basic_transition);
+                                background: $color_green--gradient;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        &:checked {
+                            & + label {
+                                &:after {
+                                    width: 10px;
+                                    height: 10px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                .tlt {
+                    width: 100%;
+                    display: inline-block;
+                    text-align: center;
+                    @include font-Mon(16px, $color_main, 400, 24px);
+                    margin-top: 40px;
+                }
+            }
+
+            .datepickerForm {
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(center);
+                width: calc(100% - 40px);
+
+                &Picker {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-end);
+                    @include justify-content(center);
+                    width: 100%;
+
+                    .titl {
+                        display: inline-block;
+                        width: 100%;
+                        text-align: center;
+                        @include font-Mon(14px, $color_main, 400, 22px);
+                        margin-bottom: 50px;
+
+                        @include mq('phablet', max) {
+                            display: none;
+                        }
+                    }
+
+
+                    .dayTime {
+                        margin-left: 20px;
+                        border: 1px solid transparentize($color_main, .7);
+                        border-radius: 5px;
+                        width: 100%;
+                        max-width: 110px;
+                        margin-bottom: 120px;
+
+                        &__item {
+                            width: 100%;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include justify-content(center);
+                            @include align-items(center);
+
+                            input[type="radio"] {
+                                display: none;
+                            }
+
+                            label {
+                                width: 100%;
+                                @include font-Mon(12px, $color_main, 500, 12px);
+                                min-height: 35px;
+                                @include flex;
+                                @include flex-wrap(wrap);
+                                @include align-items(center);
+                                @include justify-content(center);
+                                cursor: url('../images/icons/Pointer.svg'), pointer;
+                                position: relative;
+
+                                &:before {
+                                    content: ' ';
+                                    position: absolute;
+                                    width: 0%;
+                                    height: 0%;
+                                    z-index: -1;
+                                    background: $color_green--gradient;
+                                    @include transition(all $basic_transition);
+                                }
+                            }
+
+                            input[type="radio"]:checked {
+                                & + label {
+                                    color: $color_white;
+
+                                    &:before {
+                                        width: 100%;
+                                        height: 100%;
+                                        @include transition(all $basic_transition);
+                                    }
+                                }
+                            }
+
+                            &:first-child {
+                                border-bottom: 1px solid transparentize($color_main, .7);
+                            }
+                        }
+
+                        @include mq('phablet', max) {
+                            max-width: 100%;
+                            margin-top: 25px;
+                            margin-bottom: 0;
+                            margin-left: 0;
+                            position: absolute;
+                            width: 42.2222%;
+                            z-index: 101;
+                            background: $color_white;
+                            right: -100%;
+                            bottom: 130px;
+                            box-shadow: 0px 0px 10px rgba(42, 47, 39, 0.25);
+                            opacity: 0;
+                            visibility: hidden;
+                            margin-top: 0;
+                            @include transition(all $basic_transition);
+                            &.vsbl {
+                                opacity: 1;
+                                visibility: visible;
+                                right: 4px;
+                            }
+                        }
+                    }
+
+                    .picker {
+                        width: 100%;
+                        max-width: 270px;
+                        border: 1px solid transparentize($color_main, .7);
+                        padding: 25px;
+                        border-radius: 5px;
+
+
+                        .btnLine {
+                            width: 100%;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(flex-start);
+                            @include justify-content(center);
+
+                            .submitFreeQuoteForm {
+                                @include flex;
+                                @include flex-wrap(wrap);
+                                @include align-items(center);
+                                @include justify-content(center);
+                                width: 100%;
+                                min-height: 40px;
+                                border-radius: 5px;
+                                @include font-Cav(18px, $color_main, 700, 18px);
+                                background: $color_green--gradient;
+                                box-shadow: 0px 0px 10px rgba(42, 47, 39, 0.25);
+                                @include transition(all $basic_transition);
+                                text-decoration: none;
+
+                                &:hover {
+                                    opacity: .6;
+                                }
+                            }
+                        }
+
+                        .pickerCalender {
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(flex-start);
+                            @include justify-content(center);
+                            width: 100%;
+
+                            .datepicker {
+                                position: relative;
+                                width: 100%;
+                                left: unset;
+                                right: unset;
+                                border: none;
+                                margin-bottom: 10px;
+
+                                &--day-name {
+                                    @include font-Mon(12px, transparentize($color_main, .5), 300, 20px);
+                                    width: calc(100% / 7);
+                                    @include justify-content(center);
+
+                                    &:last-child {
+                                        margin-right: 0;
+                                    }
+                                }
+
+                                &--days-names {
+                                    margin: 0 0 20px 0;
+                                }
+
+                                &--cells {
+                                    @include justify-content(space-betwee);
+                                }
+
+                                &--cell {
+                                    width: calc(100% / 7);
+                                    @include justify-content(center);
+                                    @include align-items(center);
+                                    @include align-content(center);
+                                    height: auto;
+                                    margin-bottom: 20px;
+                                    cursor: url('../images/icons/Pointer.svg'), pointer;
+                                    @include font-Mon(12px, $color_main, 500, 20px);
+                                    position: relative;
+                                    z-index: 3;
+                                    @include transition(all $basic_transition);
+
+                                    &:before,
+                                    &:after {
+                                        @include transition(all $basic_transition);
+                                        z-index: -1;
+                                        position: absolute;
+                                        border-radius: 50%;
+                                        content: ' ';
+                                        visibility: hidden;
+                                        opacity: 0;
+                                    }
+
+                                    &:before {
+                                        background: $color_green--gradient;
+                                        width: 30px;
+                                        height: 30px;
+                                    }
+
+                                    &:after {
+                                        background: $color_white;
+                                        width: 22.5px;
+                                        height: 22.5px;
+                                    }
+
+                                    &.-selected- {
+                                        color: $color_green-light;
+                                        background: transparent;
+                                        font-weight: 500;
+
+                                        &:before,
+                                        &:after {
+                                            opacity: 1;
+                                            visibility: visible;
+                                        }
+                                    }
+
+                                    &.-current- {
+                                        color: $color_shad;
+                                        font-weight: 700;
+                                        font-size: 13px;
+
+                                        &.-selected- {
+                                            color: $color_green-light;
+                                            font-weight: 500;
+                                        }
+                                    }
+
+                                    &.-other-month- {
+                                        color: transparentize($color_main, .8);
+                                    }
+                                    
+                                    &.-disabled- {
+                                        color: transparentize($color_false, .5);
+                                    }
+                                    
+                                    &.-focus- {
+                                        background: transparent;
+                                    }
+
+                                    &-month,
+                                    &-year {
+                                        width: 33.3333%;
+                                        height: auto;
+                                        min-height: auto;
+
+                                        &.-selected- {
+                                            color: $color_green-light;
+                                            font-weight: 600;
+
+                                            &:before,
+                                            &:after {
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                &--nav {
+                                    @include flex;
+                                    @include flex-wrap(wrap);
+                                    @include align-items(center);
+                                    @include justify-content(flex-end);
+                                    width: 100%;
+                                    padding: 0;
+                                    margin-bottom: 20px;
+                                    border-bottom: none;
+                                    position: relative;
+
+                                    &:before {
+                                        content: ' ';
+                                        position: absolute;
+                                        right: 65px;
+                                        width: 1px;
+                                        height: 100%;
+                                        background: transparentize($color_main, .9);
+                                        top: 0;
+                                    }
+
+                                    &-title {
+                                        order: 1;
+                                        margin-right: auto;
+                                        @include font-Mon(12px, $color_main, 600, 12px);
+                                        @include transition(all $basic_transition);
+                                        cursor: url('../images/icons/Pointer.svg'), pointer;
+
+                                        &:hover {
+                                            color: $color_shad;
+                                            background: transparent;
+                                        }
+                                    }
+
+                                    &-action {
+                                        order: 2;
+                                        cursor: url('../images/icons/Pointer.svg'), pointer;
+                                        @include transition(all $basic_transition);
+                                        width: 25px;
+                                        height: 25px;
+
+                                        &[data-action="prev"] {
+
+                                            svg {
+                                                transform: rotate(-90deg);
+                                            }
+
+                                            //                                            &:before {
+                                            //                                                content: ' ';
+                                            //                                                height: 100%;
+                                            //                                                position: relative;
+                                            //                                                margin-right: 20px;
+                                            //                                                background: transparentize($color_main, .9);
+                                            //                                            }
+                                        }
+
+                                        &[data-action="next"] {
+                                            svg {
+                                                transform: rotate(-90deg);
+                                            }
+
+                                        }
+
+                                        svg {
+                                            width: 100%;
+                                            height: 100%;
+
+                                            path {
+                                                stroke: $color_main;
+                                            }
+                                        }
+
+                                        &:hover {
+                                            background: transparent;
+
+                                            svg {
+                                                path {
+                                                    stroke: $color_shad;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    @include mq('phablet',max) {
+                        position: relative;
+                    }
+                }
+            }
+
+            @include mq('phablet', max) {
+                min-height: auto;
+                padding: 35px 0;
+            }
+        }
+    }
+
+    &--checkout {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        position: absolute;
+        top: -100%;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 5;
+        @include transition(all $basic_transition);
+
+        @include flex;
+        @include flex-wrap(wrap);
+        @include align-items(flex-start);
+        @include justify-content(flex-start);
+        background: $color_white;
+
+        overflow: hidden;
+
+        &.open {
+            top: 0;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .checkoutContainer {
+            @include flex;
+            @include flex-wrap(wrap);
+            @include align-items(flex-start);
+            @include justify-content(center);
+            width: 100%;
+            position: relative;
+
+            .back {
+                width: 15px;
+                height: 30px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-image: url('../images/icons/arrowLeftBold.svg');
+                position: relative;
+                margin-right: 15px;
+                @include transition(all $basic_transition);
+                position: absolute;
+                top: calc(50% - 15px);
+                left: 5px;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                @include mq('phablet', max) {
+                    left: 0;
+                }
+            }
+
+            .mapContDestination {
+                width: 100%;
+                max-width: 560px;
+                min-height: 560px;
+                height: auto;
+                border-radius: 5px;
+                margin-right: 150px;
+                margin-left: 20px;
+
+                @include mq('tdesktop', max) {
+                    max-width: 480px;
+                    min-height: 480px;
+                    margin-right: 100px;
+
+                }
+
+                @include mq('tablet-wide', max) {
+                    max-width: 100%;
+                    min-height: 260px;
+                    margin-right: 0;
+                    margin-left: 40px;
+                    margin-bottom: 30px;
+                }
+
+                @include mq('tablet', max) {
+                    display: none;
+                }
+            }
+
+            .checkoutInfo {
+                width: 100%;
+                @include flex;
+                @include flex-wrap(wrap);
+                @include align-items(flex-start);
+                @include justify-content(center);
+                max-width: calc(100% - 750px);
+
+                @include mq('desktop', max) {
+                    max-width: calc(100% - 720px);
+                }
+
+                @include mq('tablet-wide', max) {
+                    max-width: calc(100% - 80px);
+                }
+
+                @include mq('phablet', max) {
+                    max-width: calc(100% - 40px);
+                }
+
+
+                &Top {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(center);
+                    margin-bottom: 40px;
+
+                    .titl {
+                        width: 100%;
+                        @include font-Mon(16px, $color_main, 500, 24px);
+                        margin-bottom: 10px;
+                    }
+
+                    .results {
+                        width: 100%;
+                        @include flex;
+                        @include flex-wrap(wrap);
+                        @include align-items(flex-start);
+                        @include justify-content(space-between);
+
+                        .column {
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(flex-start);
+                            @include justify-content(flex-start);
+                            width: 50%;
+
+                            @include mq('desktop', max) {
+                                width: 100%;
+                            }
+
+                            @include mq('tablet-wide', max) {
+                                width: 40%;
+                            }
+
+                            @include mq('phablet', max) {
+                                width: 100%;
+                            }
+
+                        }
+
+                        .result {
+                            @include font-Mon(14px, $color_main, 400, 22px);
+                            margin-bottom: 10px;
+                            position: relative;
+                            @include flex;
+                            @include flex-wrap(wrap);
+                            @include align-items(flex-start);
+                            @include justify-content(flex-start);
+                            padding-left: 35px;
+
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                left: 0;
+                                width: 20px;
+                                height: 20px;
+                                background: url('../images/listMarker.svg');
+                                background-size: cover;
+                                background-position: center center;
+                                background-repeat: no-repeat;
+                            }
+
+                            @include mq('phablet', max) {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+
+                &Bottom {
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(flex-start);
+                    @include justify-content(center);
+
+                    .titl {
+                        width: 100%;
+                        @include font-Mon(30px, $color_main, 500, 38px);
+                        margin-bottom: 20px;
+                        text-align: center;
+                    }
+
+                    .form {
+                        width: 100%;
+                        max-width: 390px;
+
+                        .wpcf7-form-control-wrap.gfqEmail {
+                            display: none;
+                        }
+
+                        .wpcf7-response-output.wpcf7-display-none.wpcf7-mail-sent-ok {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*- select2 custom styles -*/
+.select2-container .select2-selection--single.citiesContainer {
+    @include flex;
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    @include justify-content(flex-start);
+    height: 60px;
+    @include font-Mon(20px, $color_main, 400, 28px);
+    border: 3px solid $color_green-light;
+    padding: 0 50px;
+    border-radius: 5px;
+    cursor: url('../images/Pointer.svg'), pointer;
+    outline: none;
+
+    .select2-selection__arrow {
+        right: 50px;
+        width: 34px;
+        height: 15px;
+        top: unset;
+        @include transition(all $basic_transition);
+        background: url('../images/selectArrowDown.svg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        b {
+            display: none;
+        }
+    }
+
+    &.select2-container--open.select2-container--below {
+        .select2-selection--single.citiesContainer {
+            border-bottom: none;
+        }
+    }
+
+    &.select2-container--open.select2-container--above {
+        .select2-selection--single.citiesContainer {
+            border-top: none;
+        }
+    }
+}
+
+.select2-container--open .select2-selection--single.citiesContainer {
+    .select2-selection__arrow {
+        transform: rotate(180deg);
+    }
+}
+
+.select2-container.select2-container--default {
+    .select2-dropdown.citiesDropdown {
+        border: 3px solid $color_green-light;
+        border-radius: 5px;
+
+        &.select2-dropdown--above {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        &.select2-dropdown--below {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .select2-search.select2-search--dropdown {
+            display: none;
+        }
+
+        .select2-results {
+            .select2-results__options {
+                max-height: 240px;
+
+                .select2-results__option {
+                    @include font-Mon(20px, $color_main, 400, 28px);
+                    padding: 0 50px;
+                    height: 60px;
+                    @include flex;
+                    @include flex-wrap(wrap);
+                    @include align-items(center);
+                    @include justify-content(flex-start);
+                    border-bottom: 1px solid transparentize($color_main, .9);
+                }
+            }
+
+        }
+    }
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background: transparentize($color_green-light, .3);
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected=false] {
+    background: transparentize($color_main, .9);
+}
+
+.select2-results__option[aria-selected] {
+    cursor: url('../images/Pointer.svg'), pointer;
+}

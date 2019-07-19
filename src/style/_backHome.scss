@@ -1,0 +1,27 @@
+.backHomeLine {
+    @include flex;
+    width: 100%;
+    @include flex-wrap(wrap);
+    @include align-items(flex-start);
+    @include justify-content(flex-start);
+    margin: 40px 0;
+    .link {
+        display: inline-block;
+        @include font-Cav(30px, #BDBDBD, 400, 36px);
+        text-decoration: none;
+        .icon {
+            width: 100%;
+            max-width: 25px;
+            margin-right: 15px;
+            @include transition(all $basic_transition);
+        }
+        
+        &:hover {
+            .icon {
+                margin-right: 10px;
+                margin-left: 10px;
+                transform:  scale(1.25);
+            }
+        }
+    }
+}
